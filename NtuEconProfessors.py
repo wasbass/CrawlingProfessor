@@ -34,7 +34,10 @@ for p0 in profile_head :
 
 print("num = {}".format(num))
 
-def get_text( profile , item : str ) -> str  :
+profile = ""
+
+def get_text(item : str ) -> str  :
+    global profile 
     c = "member-data-value-" + item
     try:
         t = profile.find("td" , class_ = c).text
@@ -60,11 +63,11 @@ for p1 in range(num):
     soup = BeautifulSoup(data1 , "html.parser")
     profile = soup.find("div",class_="show-member")
     
-    name      = get_text(profile,"name")
-    title     = get_text(profile,"job-title")
-    expertise = get_text(profile,"research-expertise")
-    edu       = get_text(profile,"education")
-    web       = get_text(profile,"website")
+    name      = get_text("name")
+    title     = get_text("job-title")
+    expertise = get_text("research-expertise")
+    edu       = get_text("education")
+    web       = get_text("website")
 
     L = [name,title,expertise,edu,web]
     intoCSV(L)
