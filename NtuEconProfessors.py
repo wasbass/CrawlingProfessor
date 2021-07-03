@@ -1,17 +1,14 @@
 import urllib.request as req
 from bs4 import BeautifulSoup
-import webbrowser
-import urllib
-import csv
-import numpy as np
-import pandas as pd
 import os
 import time
 import csv
-import re
 
 os.chdir("D:\python\gitrepo")
-host_key = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36" #記得檢查甚麼意思
+host_key = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36"
+
+###請求標頭（request header）含有能令網路協議同級層（peer）識別發出該用戶代理 (en-US)請求的軟體類型或版本號、該軟體使用的作業系統、還有軟體開發者的字詞串。
+###網路瀏覽器常用的格式：User-Agent: Mozilla/<version> (<system-information>) <platform> (<platform-details>) <extensions>
 
 init_url = "http://www.econ.ntu.edu.tw"
 init_sub = "/zh_tw/people/faculty0/faculty1/"
@@ -25,8 +22,7 @@ with req.urlopen(res) as response:
 soup = BeautifulSoup(data0 , "html.parser")
 profile_head = soup.find_all("ul",class_="i-member-profile-list")
 
-L = []
-L_suburl  = []
+L_suburl = []
 num = 0
 
 for p0 in profile_head :
@@ -40,27 +36,22 @@ print("num = {}".format(num))
 
 def get_text( profile , item : str ) -> str  :
     c = "member-data-value-" + item
-    #print(c)
-
     try:
         t = profile.find("td" , class_ = c).text
     except:
         t = "NULL"
     return t
 
-def intoCSV( L : list):
+def intoCSV( L:list):
     with open(".\EconProfessors.csv", "a", newline='', encoding='utf-8-sig') as file:
         writer = csv.writer(file ,delimiter=',')
         writer.writerow(L)
         file.close() 
 
 n = 0
-
 for p1 in range(num):
     sub = L_suburl.pop(0)
     url = init_url + sub
-
-    #print(url)
 
     res = req.Request(url , headers = {"User-Agent":host_key})
     with req.urlopen(res) as response:
@@ -82,4 +73,5 @@ for p1 in range(num):
     n += 1
     if n%10 == 0 :
         print( n ,"\n")
+    time.sleep(2)
 
