@@ -9,6 +9,7 @@ host_key = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 
 ###請求標頭（request header）含有能令網路協議同級層（peer）識別發出該用戶代理 (en-US)請求的軟體類型或版本號、該軟體使用的作業系統、還有軟體開發者的字詞串。
 ###網路瀏覽器常用的格式：User-Agent: Mozilla/<version> (<system-information>) <platform> (<platform-details>) <extensions>
+###從開發人員工具-Network的html檔案中可以查到
 
 init_url = "http://www.econ.ntu.edu.tw"
 init_sub = "/zh_tw/people/faculty0/faculty1/"
