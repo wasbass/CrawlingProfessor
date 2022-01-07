@@ -93,7 +93,7 @@ def housecrawl(url):
 with open("YC_url.csv", "w", newline='', encoding='utf-8-sig') as file:   #創建
     file.close()
 
-with open("YC.csv", "w", newline='', encoding='utf-8-sig') as file:       #創建
+with open("YungChing_house_data.csv", "w", newline='', encoding='utf-8-sig') as file:       #創建
     file.close()
 
 
